@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.studentsmoney.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_addOperationFragment"
+            app:destination="@id/addOperationFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_navigation_home_to_listOfOperationsOfHubFragment"
+            app:destination="@id/listOfOperationsOfHubFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_statistic"
+        android:name="com.example.studentsmoney.ui.statistic.StatisticFragment"
+        android:label="fragment_statistic"
+        tools:layout="@layout/fragment_statistic" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.studentsmoney.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_navigation_settings_to_listOfHubsFragment"
+            app:destination="@id/listOfHubsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addOperationFragment"
+        android:name="com.example.studentsmoney.ui.home.AddOperationFragment"
+        android:label="fragment_add_operation"
+        tools:layout="@layout/fragment_add_operation" >
+        <argument
+            android:name="fromName"
+            app:argType="string" />
+        <argument
+            android:name="toName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addOperationFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfHubsFragment"
+        android:name="com.example.studentsmoney.ui.settings.ListOfHubsFragment"
+        android:label="fragment_list_of_hubs"
+        tools:layout="@layout/fragment_list_of_hubs" >
+        <argument
+            android:name="type"
+            app:argType="com.example.studentsmoney.enums.Type" />
+        <action
+            android:id="@+id/action_listOfHubsFragment_to_addHubFragment"
+            app:destination="@id/addHubFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addHubFragment"
+        android:name="com.example.studentsmoney.ui.settings.AddHubFragment"
+        android:label="fragment_add_hub"
+        tools:layout="@layout/fragment_add_hub" >
+        <argument
+            android:name="intend"
+            app:argType="string" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="type"
+            app:argType="com.example.studentsmoney.enums.Type" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfOperationsOfHubFragment"
+        android:name="com.example.studentsmoney.ui.home.ListOfOperationsOfHubFragment"
+        android:label="fragment_list_of_operations_of_hub"
+        tools:layout="@layout/fragment_list_of_operations_of_hub" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
+</navigation>
