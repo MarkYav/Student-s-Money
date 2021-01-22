@@ -29,14 +29,17 @@ import java.util.Date;
 
 public class AddOperationFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
+    //calendar for datePickerDialog
     Calendar calendar;
 
     EditText sumEt;
     EditText editText;
 
+    // for getting arguments from previous fragment
     AddOperationFragmentArgs args;
 
-    View view;
+    //root view for navigation and finding elements
+    View root;
 
     public AddOperationFragment() {
         // Required empty public constructor
@@ -45,16 +48,16 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //this.container = container;
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_add_operation, container, false);
-        return view;
+        root = inflater.inflate(R.layout.fragment_add_operation, container, false);
+        return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //initialize views from fragment_add_operation.xml
         TextView fromTv = (TextView) getView().findViewById(R.id.fromTv);
         TextView toTv = (TextView) getView().findViewById(R.id.toTv);
         Button calendarBtn = (Button) getView().findViewById(R.id.calendarBtn);
@@ -65,6 +68,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
         sumEt = (EditText) getView().findViewById(R.id.sumEt);
         editText = (EditText) getView().findViewById(R.id.editTextTextMultiLine);
 
+        //setup OnClickListeners for buttons
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +122,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
         });
 
         if (getArguments() != null) {
+            //maybe we should put it early - in onCreateView?
             args = AddOperationFragmentArgs.fromBundle(getArguments());
 
             fromTv.setText(args.getFromName());
@@ -125,6 +130,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
         }
     }
 
+    //pick date for operation
     private void showDatePickerDialog(){
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 getContext(),
@@ -150,6 +156,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
         }
     }
 
+    //it is checking is sum has set or not
     private boolean IsDataSet(){
         if (sumEt.getText().toString().length() > 0){ //TODO sumEt.getText().length() -- работает и так
             return true;
@@ -158,6 +165,11 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
         return false;
     }
 
+    /*
+    this start working at the very end
+
+    there is adding a new record to database and navigate to navigation_home.xml
+     */
     private void Operation(String from, String to, float sum, Calendar calendar, String description){
         Operation operation = new Operation();
         operation.fromName = from;
@@ -182,7 +194,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
         hubTo.currentSum += sum;
         dbController.update(hubTo);
 
-        NavController navController = Navigation.findNavController(view);
+        NavController navController = Navigation.findNavController(root);
         navController.navigate(R.id.action_addOperationFragment_to_navigation_home);
     }
 

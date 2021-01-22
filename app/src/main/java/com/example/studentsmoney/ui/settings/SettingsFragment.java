@@ -16,9 +16,12 @@ import com.example.studentsmoney.enums.Type;
 
 public class SettingsFragment extends Fragment {
 
+    //The type of Hubs, which are wanted to manage
+    //(it means that all Hubs here have the same type)
     Type type;
 
-    View view;
+    //root view for navigation and finding elements
+    View root;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -33,12 +36,12 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_settings, container, false);
-        //return view;
+        root = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        Button incomeManagerBtn = view.findViewById(R.id.incomeManagerBtn);
-        Button assetManagerBtn = view.findViewById(R.id.assetManagerBtn);
-        Button spendManagerBtn = view.findViewById(R.id.spendManagerBtn);
+        //initialize views from fragment_settings.xml
+        Button incomeManagerBtn = root.findViewById(R.id.incomeManagerBtn);
+        Button assetManagerBtn = root.findViewById(R.id.assetManagerBtn);
+        Button spendManagerBtn = root.findViewById(R.id.spendManagerBtn);
 
         incomeManagerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,11 +67,12 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-        return view;
+        return root;
     }
 
+    //function that navigate to the list of Hubs of a certain type
     private void navigate(){
-        NavController navController = Navigation.findNavController(view);
+        NavController navController = Navigation.findNavController(root);
         SettingsFragmentDirections.ActionNavigationSettingsToListOfHubsFragment actionNav =
                 SettingsFragmentDirections.actionNavigationSettingsToListOfHubsFragment(type);
         navController.navigate(actionNav);

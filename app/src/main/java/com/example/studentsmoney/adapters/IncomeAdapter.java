@@ -37,8 +37,10 @@ import java.util.List;
 
 import static java.lang.Math.abs;
 
+//This adapter for RecycleView works with incomes (look in Type enum)
 public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeHolder> {
 
+    //The list of all Hubs of a certain type, gained from DBController
     private List<Hub> incomeViews = new ArrayList<>();
     private int numberOfViews;
 
@@ -81,6 +83,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeHold
     class IncomeHolder extends RecyclerView.ViewHolder
             implements View.OnLongClickListener, View.OnDragListener, View.OnClickListener {
 
+        //views from the layout
         TextView nameTv;
         ImageView iconIv;
         TextView currencyTv;
@@ -90,6 +93,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeHold
         public IncomeHolder(@NonNull View itemView) {
             super(itemView);
 
+            //initialize views from .xml
             nameTv = itemView.findViewById(R.id.nameTv);
             iconIv = itemView.findViewById(R.id.iconIv);
             currencyTv = itemView.findViewById(R.id.currencyTv);
@@ -100,9 +104,14 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeHold
             iconIv.setOnLongClickListener(this);
             iconIv.setOnDragListener(this);
 
+            /*
+            setting tag, it is used in dragging for determination
+            relationship between views.
+             */
             iconIv.setTag(Type.income);
         }
 
+        //necessary part for a RecycleView
         void bind(Hub hub) {
             nameTv.setText(hub.name);
             //TODO set icon
@@ -113,6 +122,10 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeHold
             iconIv.setTag(R.id.nameTv, hub.name);
         }
 
+        /*
+        Now, it is a trigger for drugging, but we should
+        change it in future versions (to ~onTouch??)
+         */
         @Override
         public boolean onLongClick(View view) {
             ClipData data = ClipData.newPlainText("", "");
@@ -140,6 +153,7 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeHold
             navController.navigate(actionNav);
         }
 
+        //TODO there is no need in this method here
         @Override
         public boolean onDrag(View view, DragEvent dragEvent) {
             int action = dragEvent.getAction();
@@ -191,6 +205,9 @@ public class IncomeAdapter extends RecyclerView.Adapter<IncomeAdapter.IncomeHold
             return false;
         }
 
+        /*
+        checking method - is created to prevent unnecessary interaction
+         */
         private boolean check(ImageView imgV, ImageView dragView) {
             if (imgV.getTag(R.id.nameTv).toString().equals(dragView.getTag(R.id.nameTv).toString()))
                 return false;

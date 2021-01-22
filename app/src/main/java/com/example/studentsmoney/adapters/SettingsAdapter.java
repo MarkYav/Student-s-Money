@@ -24,8 +24,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+//This adapter for RecycleView works with Hubs of a certain type (look in Type enum)
 public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.SettingsItemHolder> {
 
+    //The list of all Hubs of the type, gained from DBController
     private List<Hub> settingsViews = new ArrayList<>();
     private int numberOfViews;
     private Type type;
@@ -64,6 +66,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
 
     class SettingsItemHolder extends RecyclerView.ViewHolder{
 
+        //views from the layout
         TextView nameTv;
         ImageView iconIv;
         TextView currencyTv;
@@ -73,6 +76,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
         public SettingsItemHolder(@NonNull View itemView) {
             super(itemView);
 
+            //initialize views from .xml
             nameTv = itemView.findViewById(R.id.nameTv);
             iconIv = itemView.findViewById(R.id.iconIv);
             currencyTv = itemView.findViewById(R.id.currencyTv);
@@ -92,6 +96,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
             });
         }
 
+        //a necessary part for a RecycleView
         void bind(Hub hub){
             nameTv.setText(hub.name);
             //TODO set icon

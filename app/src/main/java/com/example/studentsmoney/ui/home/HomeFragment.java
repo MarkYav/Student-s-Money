@@ -30,9 +30,10 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        //root view for finding elements
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //настраиваем Tv: Баланс, Расходы и План
+        //setup TextViews: Balance, expenses and plan
         TextView balanceTv = (TextView) root.findViewById(R.id.balanceTv);
         TextView expensesTv = (TextView) root.findViewById(R.id.expensesTv);
         TextView planTv = (TextView) root.findViewById(R.id.planTv);
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment {
         expensesTv.setText(String.valueOf(dbController.getSumSpentOnMonth()));
         planTv.setText(String.valueOf(dbController.getSumOfPlannedSums()));
 
-        //настраиваем RecyclerView (3 штуки)
+        //setup RecyclerViews: incomesRV, assetsRV and spendsRV
         incomesRV = root.findViewById(R.id.incomesRV);
         assetsRV = root.findViewById(R.id.assetsRV);
         spendsRV = root.findViewById(R.id.spendsRV);
@@ -67,42 +68,6 @@ public class HomeFragment extends Fragment {
         incomesRV.setAdapter(incomeAdapter);
         assetsRV.setAdapter(assetAdapter);
         spendsRV.setAdapter(spendAdapter);
-
-        //////////////
-/*
-        Hub hub = new Hub();
-        hub.name = "основной доход";
-        hub.type = Type.income;
-        hub.currency = Currency.UAH;
-        hub.plannedSum = 5000;
-        hub.plannedSum = 10000;
-        hub.area = "доход";
-        hub.order = 1;
-
-        Hub hub1 = new Hub();
-        hub1.name = "приват";
-        hub1.type = Type.asset;
-        hub1.currency = Currency.UAH;
-        //hub1.plannedSum = 5000;
-        hub1.plannedSum = 15000;
-        hub1.area = "";
-        hub1.order = 2;
-
-        Hub hub2 = new Hub();
-        hub2.name = "еда";
-        hub2.type = Type.spend;
-        hub2.currency = Currency.UAH;
-        hub2.plannedSum = 1200;
-        hub2.plannedSum = 3000;
-        hub2.area = "проживание";
-        hub2.order = 3;
-
-
-        dbController.insertHub(hub);
-        dbController.insertHub(hub1);
-        dbController.insertHub(hub2);
-*/
-        //////////////
 
         return root;
     }

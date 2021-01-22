@@ -9,6 +9,7 @@ import com.example.studentsmoney.database.hub.HubDao;
 import com.example.studentsmoney.database.operation.Operation;
 import com.example.studentsmoney.database.operation.OperationDao;
 
+//required for room
 @Database(entities = {Hub.class, Operation.class}, version = 1, exportSchema = false)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {

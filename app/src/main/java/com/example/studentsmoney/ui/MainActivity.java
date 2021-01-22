@@ -18,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //getSupportActionBar().hide();
+
+        //TODO setup ToolBur
         //Toolbar toolbar = new Toolbar();
         //ActionBar toolbar = getSupportActionBar();
         //toolbar.setLogo();

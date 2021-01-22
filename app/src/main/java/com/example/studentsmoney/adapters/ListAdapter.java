@@ -20,8 +20,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+//This adapter for RecycleView works with operation's records
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
 
+    //The list of all Operation, gained from DBController
     private List<Operation> ListViews = new ArrayList<>();
     private int numberOfViews;
     private String name;
@@ -61,6 +63,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
 
     class ListHolder extends RecyclerView.ViewHolder {
 
+        //views from the layout
         TextView nameFromTv;
         TextView nameToTv;
         TextView descriptionTv;
@@ -70,6 +73,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
         public ListHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
+            //initialize views from .xml
             nameFromTv = itemView.findViewById(R.id.nameFromTv);
             nameToTv = itemView.findViewById(R.id.nameToTv);
             descriptionTv = itemView.findViewById(R.id.descriptionTv);
@@ -77,6 +81,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
             sumTv = itemView.findViewById(R.id.sumTv);
         }
 
+        //a necessary part for a RecycleView
         void bind(Operation operation){
             nameFromTv.setText(operation.fromName);
             nameToTv.setText(operation.toName);

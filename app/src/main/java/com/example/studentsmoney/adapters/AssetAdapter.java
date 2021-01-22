@@ -26,8 +26,10 @@ import com.example.studentsmoney.R;
 import java.util.ArrayList;
 import java.util.List;
 
+//This adapter for RecycleView works with assets (look in Type enum)
 public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder> {
 
+    //The list of all Hubs of a certain type, gained from DBController
     private List<Hub> assetViews = new ArrayList<>();
     private int numberOfViews;
 
@@ -70,6 +72,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
 
     class AssetHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnDragListener{
 
+        //views from the layout
         TextView nameTv;
         ImageView iconIv;
         TextView currencyTv;
@@ -79,6 +82,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
         public AssetHolder(@NonNull View itemView) {
             super(itemView);
 
+            //initialize views from .xml
             nameTv = itemView.findViewById(R.id.nameTv);
             iconIv = itemView.findViewById(R.id.iconIv);
             currencyTv = itemView.findViewById(R.id.currencyTv);
@@ -88,7 +92,10 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
             iconIv.setOnLongClickListener(this);
             iconIv.setOnDragListener(this);
 
-            //ноій код
+            /*
+            setting tag, it is used in dragging for determination
+            relationship between views.
+             */
             iconIv.setTag(Type.asset);
 
             iconIv.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +112,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
             });
         }
 
+        //a necessary part for a RecycleView
         void bind(Hub hub){
             nameTv.setText(hub.name);
             //TODO set icon
@@ -115,6 +123,10 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
             iconIv.setTag(R.id.nameTv, hub.name);
         }
 
+        /*
+        Now, it is a trigger for drugging, but we should
+        change it in future versions (to ~onTouch??)
+         */
         @Override
         public boolean onLongClick(View view) {
             ClipData data = ClipData.newPlainText("","");
@@ -126,7 +138,6 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
             );
 
             ImageView imgV = (ImageView) view;
-            //imgV.setColorFilter(Color.parseColor("#F53241"));
             imgV.setColorFilter(Color.RED);
             return true;
         }
@@ -158,9 +169,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
                     return true;
                 case DragEvent.ACTION_DROP:
                     if (check(imgV, dragView)) {
-                        //Toast.makeText(view.getContext(), "Что-то произошло!", Toast.LENGTH_SHORT).show();
                         NavController navController = Navigation.findNavController(view);
-                        //navController.navigate(R.id.action_navigation_home_to_operationFragment);
                         HomeFragmentDirections.ActionNavigationHomeToAddOperationFragment actionNav =
                                 HomeFragmentDirections.actionNavigationHomeToAddOperationFragment(
                                         dragView.getTag(R.id.nameTv).toString(), imgV.getTag(R.id.nameTv).toString());
@@ -182,6 +191,9 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
             return false;
         }
 
+        /*
+        checking method - is created to prevent unnecessary interaction
+         */
         private boolean check(ImageView imgV, ImageView dragView){
             if (imgV.getTag(R.id.nameTv).toString().equals(dragView.getTag(R.id.nameTv).toString()))
                 return false;

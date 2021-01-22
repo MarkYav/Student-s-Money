@@ -28,10 +28,10 @@ import com.example.studentsmoney.R;
 import java.util.ArrayList;
 import java.util.List;
 
+//This adapter for RecycleView works with spends (look in Type enum)
  public class SpendAdapter extends RecyclerView.Adapter<SpendAdapter.SpendHolder> {
- 
-     int NAME = 1;
- 
+
+     //The list of all Hubs of a certain type, gained from DBController
      private List<Hub> spendViews = new ArrayList<>();
      private int numberOfViews;
  
@@ -72,7 +72,8 @@ import java.util.List;
      }
  
      class SpendHolder extends RecyclerView.ViewHolder implements View.OnDragListener{
- 
+
+         //views from the layout
          TextView nameTv;
          ImageView iconIv;
          TextView currencyTv;
@@ -81,7 +82,8 @@ import java.util.List;
  
          public SpendHolder(@NonNull View itemView) {
              super(itemView);
- 
+
+             //initialize views from .xml
              nameTv = itemView.findViewById(R.id.nameTv);
              iconIv = itemView.findViewById(R.id.iconIv);
              currencyTv = itemView.findViewById(R.id.currencyTv);
@@ -90,7 +92,10 @@ import java.util.List;
  
              iconIv.setOnDragListener(this);
  
-             //ноій код
+             /*
+            setting tag, it is used in dragging for determination
+            relationship between views.
+             */
              iconIv.setTag(Type.spend);
 
              iconIv.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +111,8 @@ import java.util.List;
                  }
              });
          }
- 
+
+         //necessary part for a RecycleView
          void bind(Hub hub){
              nameTv.setText(hub.name);
              //TODO set icon
@@ -169,7 +175,10 @@ import java.util.List;
              }
              return false;
          }
- 
+
+         /*
+        checking method - is created to prevent unnecessary interaction
+         */
          private boolean check(ImageView imgV, ImageView dragView){
              if (imgV.getTag(R.id.nameTv).toString().equals(dragView.getTag(R.id.nameTv).toString())) //TODO id у них одинаковые???
                  return false;

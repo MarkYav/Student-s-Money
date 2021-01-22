@@ -15,6 +15,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/*
+This is a layer between room and View-layer.
+
+This class contains methods which address to room.
+It is called by View-layer classes.
+ */
 public class DBController {
 
     private static final String DB_NAME = "my-database";
@@ -23,7 +29,7 @@ public class DBController {
     private HubDao hubDao;
     private OperationDao operationDao;
 
-    // конструктор
+    //constructor
     public DBController(Context context) {
         appDatabase = Room.databaseBuilder(context.getApplicationContext(),
                 AppDatabase.class, DB_NAME).allowMainThreadQueries().build(); //без allowMainThreadQueries() не работало
@@ -32,7 +38,7 @@ public class DBController {
         operationDao = appDatabase.operationDao();
     }
 
-    //Все методы про Hub
+    //All methods for Hub
     public List<Hub> getAllHubsByType(Type type){
         return hubDao.getAllByType(type);
     }
@@ -66,7 +72,7 @@ public class DBController {
         hubDao.update(hub);
     }
 
-    //Все методы для Operation
+    //All methods for Operation
     public List<Operation> getOperationByName(String name){
         return operationDao.getAllByName(name);
     }

@@ -15,15 +15,17 @@ import android.widget.Button;
 
 import com.example.studentsmoney.R;
 import com.example.studentsmoney.adapters.SettingsAdapter;
-import com.example.studentsmoney.enums.Currency;
 
 public class ListOfHubsFragment extends Fragment {
 
+    //the main RecyclerView
     RecyclerView settingsRV;
 
+    // for getting arguments from previous fragment
     ListOfHubsFragmentArgs args;
 
-    View view;
+    //root view for navigation and finding elements
+    View root;
 
     public ListOfHubsFragment() {
         // Required empty public constructor
@@ -35,18 +37,20 @@ public class ListOfHubsFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_list_of_hubs, container, false);
+        root = inflater.inflate(R.layout.fragment_list_of_hubs, container, false);
 
+        //receive arguments from previous fragment
         args = ListOfHubsFragmentArgs.fromBundle(getArguments());
 
-        settingsRV = view.findViewById(R.id.settingsRV);
+        //initialize views from fragment_list_of_operations_of_hub.xml
+        settingsRV = root.findViewById(R.id.settingsRV);
         LinearLayoutManager linearLayoutManagerSettings = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         settingsRV.setLayoutManager(linearLayoutManagerSettings);
         settingsRV.setHasFixedSize(true);
         SettingsAdapter settingsAdapter = new SettingsAdapter(getContext(), args.getType());
         settingsRV.setAdapter(settingsAdapter);
 
-        Button addHubBtn = view.findViewById(R.id.addHubBtn);
+        Button addHubBtn = root.findViewById(R.id.addHubBtn);
         addHubBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +63,6 @@ public class ListOfHubsFragment extends Fragment {
             }
         });
 
-        return view;
+        return root;
     }
 }

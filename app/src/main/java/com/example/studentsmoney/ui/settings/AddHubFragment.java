@@ -19,11 +19,14 @@ import com.example.studentsmoney.enums.Currency;
 
 public class AddHubFragment extends Fragment {
 
+    //The hub which was selected
     Hub hub;
 
+    // for getting arguments from previous fragment
     AddHubFragmentArgs args;
 
-    View view;
+    //root view for navigation and finding elements
+    View root;
 
     public AddHubFragment() {
         // Required empty public constructor
@@ -39,21 +42,28 @@ public class AddHubFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_add_hub, container, false);
+        root = inflater.inflate(R.layout.fragment_add_hub, container, false);
 
+        //receive arguments from previous fragment
         args = AddHubFragmentArgs.fromBundle(getArguments());
 
-        EditText nameEt = view.findViewById(R.id.nameEt);
-        TextView typeTv = view.findViewById(R.id.typeTv);
-        TextView currencyTv = view.findViewById(R.id.currencyTv);
-        EditText plannedSumEt = view.findViewById(R.id.plannedSumEt);
-        EditText currentSumEt = view.findViewById(R.id.currentSumEt);
-        EditText areaEt = view.findViewById(R.id.areaEt);
-        Button addBtn = view.findViewById(R.id.addBtn);
-        Button deleteBtn = view.findViewById(R.id.deleteBtn);
+        //initialize views from fragment_add_hub.xml
+        EditText nameEt = root.findViewById(R.id.nameEt);
+        TextView typeTv = root.findViewById(R.id.typeTv);
+        TextView currencyTv = root.findViewById(R.id.currencyTv);
+        EditText plannedSumEt = root.findViewById(R.id.plannedSumEt);
+        EditText currentSumEt = root.findViewById(R.id.currentSumEt);
+        EditText areaEt = root.findViewById(R.id.areaEt);
+        Button addBtn = root.findViewById(R.id.addBtn);
+        Button deleteBtn = root.findViewById(R.id.deleteBtn);
 
         typeTv.setText(args.getType().name());
 
+        /*
+        We use this fragment either for creating or changing Hubs,
+        so, firstly we set this view invisible, and if intend of this
+        fragment is "change", than we set it visible.
+         */
         deleteBtn.setVisibility(View.INVISIBLE);
 
         if (args.getIntend().equals("change")) {
@@ -66,6 +76,7 @@ public class AddHubFragment extends Fragment {
             /*if (plannedSumEt.getText().toString().length() != 0){
                 hub.plannedSum = Float.parseFloat(plannedSumEt.getText().toString());
             }*/
+            //TODO check whether following EditText is filled or no
             plannedSumEt.setText(String.valueOf(hub.plannedSum));
             /*if (currentSumEt.getText().toString().length() != 0) {
                 hub.currentSum = Float.parseFloat(currentSumEt.getText().toString());
@@ -83,6 +94,7 @@ public class AddHubFragment extends Fragment {
             public void onClick(View view) {
                 if (nameEt.getText().toString().length() > 0) {
                     if (args.getIntend().equals("change")) {
+                        //start getting the existed Hub
                         DBController dbController = new DBController(getContext());
 
                         hub.name = nameEt.getText().toString();
@@ -104,6 +116,7 @@ public class AddHubFragment extends Fragment {
                     }
 
                     if (args.getIntend().equals("add")) {
+                        //creating a new Hub
                         hub = new Hub();
                         hub.name = nameEt.getText().toString();
                         hub.type = args.getType();
@@ -134,6 +147,7 @@ public class AddHubFragment extends Fragment {
             }
         });
 
+        //delete this Hub
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,6 +159,6 @@ public class AddHubFragment extends Fragment {
             }
         });
 
-        return view;
+        return root;
     }
 }

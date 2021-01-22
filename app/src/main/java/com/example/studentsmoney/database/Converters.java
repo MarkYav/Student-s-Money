@@ -7,6 +7,12 @@ import com.example.studentsmoney.enums.Type;
 
 import java.util.Date;
 
+/*
+this is converters for work with room.
+There are:
+    converters, which convert Date <-> Long (SQLite doesn't support Date type)
+    converters, which convert Currency <-> String (SQLite doesn't support Currency type)
+ */
 public class Converters {
     @TypeConverter
     public static Date fromTimestamp(Long value) {
