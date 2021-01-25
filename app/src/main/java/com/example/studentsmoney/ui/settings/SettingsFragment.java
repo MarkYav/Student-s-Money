@@ -14,10 +14,19 @@ import android.widget.Button;
 import com.example.studentsmoney.R;
 import com.example.studentsmoney.enums.Type;
 
+/**
+ * This is a class that controls the settings page.
+ *
+ * @author MarkYav
+ * @version 1.0
+ * @since 2021-01-25
+ */
 public class SettingsFragment extends Fragment {
 
-    //The type of Hubs, which are wanted to manage
-    //(it means that all Hubs here have the same type)
+    /*
+     * The type of Hubs, which are wanted to manage.
+     * (it means that all Hubs here have the same type)
+     */
     Type type;
 
     //root view for navigation and finding elements
@@ -70,7 +79,9 @@ public class SettingsFragment extends Fragment {
         return root;
     }
 
-    //function that navigate to the list of Hubs of a certain type
+    /**
+     * This function navigate to the list of Hubs of a certain type
+     */
     private void navigate() {
         NavController navController = Navigation.findNavController(root);
         SettingsFragmentDirections.ActionNavigationSettingsToListOfHubsFragment actionNav =

@@ -23,6 +23,12 @@ import java.util.List;
  * <p>
  * Use the {@link DBController#DBController(Context)} method to
  * create an instance of this layer.
+ *
+ * Use the {@link }
+ *
+ * @author MarkYav
+ * @version 1.0
+ * @since 2021-01-25
  */
 public class DBController {
 

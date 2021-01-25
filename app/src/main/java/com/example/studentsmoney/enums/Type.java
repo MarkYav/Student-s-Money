@@ -1,11 +1,18 @@
 package com.example.studentsmoney.enums;
 
-/*
-enum for working with Hubs:
-we have 3 types:
-    income - user's source of money
-    asset - user's account, where he can hold his money
-    spend - on what user has spend his money
+/**
+ * This is a enum for working with Hubs.
+ * <p>
+ * We have 3 types:
+ * <ul>
+ *     <li>{@link Type#income} - user's source of money;</li>
+ *     <li>{@link Type#asset} - user's account, where he can hold his money;</li>
+ *     <li>{@link Type#spend} - on what user has spend his money.</li>
+ * </ul>
+ *
+ * @author MarkYav
+ * @version 1.0
+ * @since 2021-01-25
  */
 public enum Type {
     income,

@@ -13,19 +13,26 @@ import com.example.studentsmoney.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link DELETEFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * The main activity for working with app.
+ * There is <b>only one</b>  activity in this app,
+ * user can switch between fragments using
+ * BottomNavBar or using buttons.
+ *
+ * @author MarkYav
+ * @version 1.0
+ * @since 2021-01-25
  */
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Use this method is used to:
+     * <ul>
+     *     <li>set up {@link android.widget.Toolbar}</li>
+     *     <li>set up {@link BottomNavigationView}</li>
+     *     <li>set up navigation between fragments, using {@link BottomNavigationView}</li>
+     * </ul>
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DELETEFragment.
+     * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

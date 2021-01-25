@@ -22,18 +22,44 @@ import com.example.studentsmoney.database.hub.Hub;
 import com.example.studentsmoney.enums.Currency;
 import com.example.studentsmoney.enums.Type;
 
+/**
+ * This is a class that controls the home page.
+ *
+ * @author MarkYav
+ * @version 1.0
+ * @since 2021-01-25
+ */
 public class HomeFragment extends Fragment {
 
+    /**
+     * The {@link RecyclerView} that is responsible for
+     * managing the incomes.
+     */
     private RecyclerView incomesRV;
+
+    /**
+     * The {@link RecyclerView} that is responsible for
+     * managing the assets.
+     */
     private RecyclerView assetsRV;
+
+    /**
+     * The {@link RecyclerView} that is responsible for
+     * managing the spends.
+     */
     private RecyclerView spendsRV;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        //root view for finding elements
+
+        /*
+         * Here we inflate fragment_home layout and set up root view for finding elements.
+         */
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //setup TextViews: Balance, expenses and plan
+        /*
+         * setup TextViews: Balance, expenses and plan
+         */
         TextView balanceTv = (TextView) root.findViewById(R.id.balanceTv);
         TextView expensesTv = (TextView) root.findViewById(R.id.expensesTv);
         TextView planTv = (TextView) root.findViewById(R.id.planTv);
@@ -44,7 +70,9 @@ public class HomeFragment extends Fragment {
         expensesTv.setText(String.valueOf(dbController.getSumSpentOnMonth()));
         planTv.setText(String.valueOf(dbController.getSumOfPlannedSums()));
 
-        //setup RecyclerViews: incomesRV, assetsRV and spendsRV
+        /*
+         * setup RecyclerViews: incomesRV, assetsRV and spendsRV
+         */
         incomesRV = root.findViewById(R.id.incomesRV);
         assetsRV = root.findViewById(R.id.assetsRV);
         spendsRV = root.findViewById(R.id.spendsRV);
