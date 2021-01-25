@@ -33,13 +33,13 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
     private List<Hub> assetViews = new ArrayList<>();
     private int numberOfViews;
 
-    public AssetAdapter(Context context){
+    public AssetAdapter(Context context) {
         DBController controller = new DBController(context);
         this.assetViews = controller.getAllHubsByType(Type.asset);
         numberOfViews = assetViews.size();
     }
 
-    public AssetAdapter(List<Hub> Views){
+    public AssetAdapter(List<Hub> Views) {
         this.assetViews = Views;
         numberOfViews = assetViews.size();
     }
@@ -70,7 +70,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
         return numberOfViews;
     }
 
-    class AssetHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnDragListener{
+    class AssetHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnDragListener {
 
         //views from the layout
         TextView nameTv;
@@ -113,7 +113,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
         }
 
         //a necessary part for a RecycleView
-        void bind(Hub hub){
+        void bind(Hub hub) {
             nameTv.setText(hub.name);
             //TODO set icon
             currencyTv.setText(hub.currency.name());
@@ -129,7 +129,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
          */
         @Override
         public boolean onLongClick(View view) {
-            ClipData data = ClipData.newPlainText("","");
+            ClipData data = ClipData.newPlainText("", "");
             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
             view.startDrag(data//data to be dragged
                     , shadowBuilder //drag shadow
@@ -194,7 +194,7 @@ public class AssetAdapter extends RecyclerView.Adapter<AssetAdapter.AssetHolder>
         /*
         checking method - is created to prevent unnecessary interaction
          */
-        private boolean check(ImageView imgV, ImageView dragView){
+        private boolean check(ImageView imgV, ImageView dragView) {
             if (imgV.getTag(R.id.nameTv).toString().equals(dragView.getTag(R.id.nameTv).toString()))
                 return false;
             if (dragView.getTag() == Type.income && imgV.getTag() == Type.asset)

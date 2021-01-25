@@ -14,5 +14,6 @@ import com.example.studentsmoney.database.operation.OperationDao;
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     public abstract HubDao hubDao();
+
     public abstract OperationDao operationDao();
 }

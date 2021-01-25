@@ -32,7 +32,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
     private int numberOfViews;
     private Type type;
 
-    public SettingsAdapter(Context context, Type type){
+    public SettingsAdapter(Context context, Type type) {
         DBController controller = new DBController(context);
         this.settingsViews = controller.getAllHubsByType(type);
         numberOfViews = settingsViews.size();
@@ -64,7 +64,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
         return numberOfViews;
     }
 
-    class SettingsItemHolder extends RecyclerView.ViewHolder{
+    class SettingsItemHolder extends RecyclerView.ViewHolder {
 
         //views from the layout
         TextView nameTv;
@@ -97,7 +97,7 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
         }
 
         //a necessary part for a RecycleView
-        void bind(Hub hub){
+        void bind(Hub hub) {
             nameTv.setText(hub.name);
             //TODO set icon
             currencyTv.setText(hub.currency.name());

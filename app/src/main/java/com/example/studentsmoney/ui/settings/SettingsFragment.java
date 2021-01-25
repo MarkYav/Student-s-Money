@@ -71,7 +71,7 @@ public class SettingsFragment extends Fragment {
     }
 
     //function that navigate to the list of Hubs of a certain type
-    private void navigate(){
+    private void navigate() {
         NavController navController = Navigation.findNavController(root);
         SettingsFragmentDirections.ActionNavigationSettingsToListOfHubsFragment actionNav =
                 SettingsFragmentDirections.actionNavigationSettingsToListOfHubsFragment(type);

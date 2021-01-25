@@ -82,7 +82,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ListHolder> {
         }
 
         //a necessary part for a RecycleView
-        void bind(Operation operation){
+        void bind(Operation operation) {
             nameFromTv.setText(operation.fromName);
             nameToTv.setText(operation.toName);
             descriptionTv.setText(operation.description);

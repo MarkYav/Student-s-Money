@@ -1,7 +1,7 @@
 package com.example.studentsmoney.ui;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -12,8 +12,21 @@ import android.os.Bundle;
 import com.example.studentsmoney.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link DELETEFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment DELETEFragment.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

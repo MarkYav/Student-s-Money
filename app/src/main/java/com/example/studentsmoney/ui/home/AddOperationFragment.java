@@ -88,7 +88,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                if (IsDataSet()){
+                if (IsDataSet()) {
                     Operation(args.getFromName(), args.getToName(),
                             Float.parseFloat(sumEt.getText().toString()),
                             calendar, editText.getText().toString());
@@ -100,7 +100,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
-                if (IsDataSet()){
+                if (IsDataSet()) {
                     Operation(args.getFromName(), args.getToName(),
                             Float.parseFloat(sumEt.getText().toString()),
                             calendar, editText.getText().toString());
@@ -113,7 +113,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(Calendar.DAY_OF_MONTH, -1);
-                if (IsDataSet()){
+                if (IsDataSet()) {
                     Operation(args.getFromName(), args.getToName(),
                             Float.parseFloat(sumEt.getText().toString()),
                             calendar, editText.getText().toString());
@@ -131,7 +131,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
     }
 
     //pick date for operation
-    private void showDatePickerDialog(){
+    private void showDatePickerDialog() {
         DatePickerDialog datePickerDialog = new DatePickerDialog(
                 getContext(),
                 this,
@@ -149,7 +149,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dateOfMonth);
         //Toast.makeText(getContext(), year + " " + month + " " + dateOfMonth, Toast.LENGTH_SHORT).show();
-        if (IsDataSet()){
+        if (IsDataSet()) {
             Operation(args.getFromName(), args.getToName(),
                     Float.parseFloat(sumEt.getText().toString()),
                     calendar, editText.getText().toString());
@@ -157,8 +157,8 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
     }
 
     //it is checking is sum has set or not
-    private boolean IsDataSet(){
-        if (sumEt.getText().toString().length() > 0){ //TODO sumEt.getText().length() -- работает и так
+    private boolean IsDataSet() {
+        if (sumEt.getText().toString().length() > 0) { //TODO sumEt.getText().length() -- работает и так
             return true;
         }
         Toast.makeText(getContext(), "Введите сумму", Toast.LENGTH_SHORT).show();
@@ -170,7 +170,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
 
     there is adding a new record to database and navigate to navigation_home.xml
      */
-    private void Operation(String from, String to, float sum, Calendar calendar, String description){
+    private void Operation(String from, String to, float sum, Calendar calendar, String description) {
         Operation operation = new Operation();
         operation.fromName = from;
         operation.toName = to;
@@ -184,8 +184,7 @@ public class AddOperationFragment extends Fragment implements DatePickerDialog.O
         Hub hubFrom = dbController.getHubByName(from);
         if (hubFrom.type != Type.income) {
             hubFrom.currentSum -= sum;
-        }
-        else {
+        } else {
             hubFrom.currentSum += sum;
         }
         dbController.update(hubFrom);

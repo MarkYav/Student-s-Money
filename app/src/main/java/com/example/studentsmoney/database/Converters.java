@@ -25,22 +25,22 @@ public class Converters {
     }
 
     @TypeConverter
-    public static String currencyToString(Currency currency){
+    public static String currencyToString(Currency currency) {
         return currency.toString();
     }
 
     @TypeConverter
-    public static Currency StringToCurrency(String currencyName){
+    public static Currency StringToCurrency(String currencyName) {
         return Currency.valueOf(currencyName);
     }
 
     @TypeConverter
-    public static String typeToString(Type type){
+    public static String typeToString(Type type) {
         return type.toString();
     }
 
     @TypeConverter
-    public static Type StringToType(String typeName){
+    public static Type StringToType(String typeName) {
         return Type.valueOf(typeName);
     }
 }
